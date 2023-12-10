@@ -6,7 +6,7 @@ import { buttonVariants } from "@/components/ui/button";
 
 export default function Home() {
   return (
-    <>
+    <section>
       {/* Hero section */}
 
       <MaxWidthWrapper className="mt-28 sm:mt-40 mb-12 flex flex-col items-center justify-center text-center">
@@ -49,7 +49,7 @@ export default function Home() {
               clipPath:
                 "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
             }}
-            className="relative w-[36.125rem] sm:w-[72.187rem] left-[calc(50%-11rem)] sm:left-[calc(50%-30rem)] aspect-[1155/678] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30"
+            className="relative w-[36.125rem] sm:w-[72.187rem] left-[calc(50%-11rem)] sm:left-[calc(50%-30rem)] aspect-[1155/678] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#3325f5] to-[#e90000] opacity-30"
           />
         </div>
 
@@ -78,7 +78,7 @@ export default function Home() {
               clipPath:
                 "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
             }}
-            className="relative w-[36.125rem] sm:w-[72.187rem] left-[calc(50%-13rem)] sm:left-[calc(50%-36rem)] aspect-[1155/678] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30"
+            className="relative w-[36.125rem] sm:w-[72.187rem] left-[calc(50%-13rem)] sm:left-[calc(50%-36rem)] aspect-[1155/678] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#3325f5] to-[#e90000] opacity-30"
           />
         </div>
       </div>
@@ -102,7 +102,7 @@ export default function Home() {
         <ol className="my-8 pt-8 space-y-4 md:space-x-12 md:space-y-0 md:flex">
           <li className="md:flex-1">
             <div className="py-2 pl-4 md:pl-0 md:pb-0 md:pt-4 flex flex-col space-y-2 border-l-4 md:border-l-0 md:border-t-2 border-zinc-300">
-              <span className="text-sm font-medium text-red-700">Step 1</span>
+              <span className="text-3xl font-black text-red-600">Step 1</span>
               <span className="text-xl font-semibold ">
                 Sign up for an account
               </span>
@@ -120,7 +120,7 @@ export default function Home() {
           </li>
           <li className="md:flex-1">
             <div className="py-2 pl-4 md:pl-0 md:pb-0 md:pt-4 flex flex-col space-y-2 border-l-4 md:border-l-0 md:border-t-2 border-zinc-300">
-              <span className="text-sm font-medium text-red-700">Step 2</span>
+              <span className="text-3xl font-black text-red-600">Step 2</span>
               <span className="text-xl font-semibold ">
                 Upload your PDF file
               </span>
@@ -131,7 +131,7 @@ export default function Home() {
           </li>
           <li className="md:flex-1">
             <div className="py-2 pl-4 md:pl-0 md:pb-0 md:pt-4 flex flex-col space-y-2 border-l-4 md:border-l-0 md:border-t-2 border-zinc-300">
-              <span className="text-sm font-medium text-red-700">Step 3</span>
+              <span className="text-3xl font-black text-red-600">Step 3</span>
               <span className="text-xl font-semibold ">
                 Start asking questions
               </span>
@@ -158,6 +158,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 }
