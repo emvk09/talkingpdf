@@ -9,7 +9,7 @@ export default function Home() {
     <section>
       {/* Hero section */}
 
-      <MaxWidthWrapper className="mt-28 sm:mt-40 mb-12 flex flex-col items-center justify-center text-center">
+      <MaxWidthWrapper className="mt-20 sm:mt-36 mb-12 flex flex-col items-center justify-center text-center">
         <div className="mx-auto mb-4 px-2 py-2 flex max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-full border border-gray-200 bg-white shadow-md backdrop-blur transition-all hover:bg-white/50 hover:border-gray-300">
           <p className="text-sm font-semibold text-gray-700">
             talkingPDF is now public !

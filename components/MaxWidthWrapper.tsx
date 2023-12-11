@@ -13,7 +13,7 @@ export default function MaxWidthWrapper({ className, children }: Props) {
     // here the classnames in cn will always be present through out the app an will not be overwritten or replaced
     <div
       className={cn(
-        "mx-auto w-full  max-w-screen-xl px-2.5 md:px-20",
+        "mx-auto w-full max-w-screen-xl px-2.5 md:px-20",
         className
       )}
     >
