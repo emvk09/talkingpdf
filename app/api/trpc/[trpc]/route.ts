@@ -1,3 +1,5 @@
+// this file sets up an endpoint to handle all API routes as TRPC requests
+
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
 import { appRouter } from "@/trpc";
 

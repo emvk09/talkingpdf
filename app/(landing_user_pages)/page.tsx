@@ -7,36 +7,38 @@ import { buttonVariants } from "@/components/ui/button";
 export default function Home() {
   return (
     <section>
-      {/* Hero section */}
+      {/* HERO SECTION */}
 
-      <MaxWidthWrapper className="mt-20 sm:mt-36 mb-12 flex flex-col items-center justify-center text-center">
-        <div className="mx-auto mb-4 px-2 py-2 flex max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-full border border-gray-200 bg-white shadow-md backdrop-blur transition-all hover:bg-white/50 hover:border-gray-300">
-          <p className="text-sm font-semibold text-gray-700">
-            talkingPDF is now public !
+      <MaxWidthWrapper className="max-w-6xl px-4 mt-20 sm:mt-36 mb-12">
+        <div className="flex flex-col items-center justify-center text-center">
+          <div className="max-w-fit mb-4 px-2 py-2 flex items-center justify-center space-x-2 overflow-hidden rounded-full border border-gray-200 bg-white shadow-md backdrop-blur transition-all hover:bg-white/50 hover:border-gray-300">
+            <p className="text-sm font-semibold text-gray-700">
+              talkingPDF is now public !
+            </p>
+          </div>
+          <h1 className="max-w-4xl text-5xl md:text-6xl lg:text-7xl font-bold">
+            Talk to your <span className="text-red-600">documents</span> in
+            seconds
+          </h1>
+          <p className="max-w-prose mt-5 text-zinc-700 sm:textlg">
+            TalkingPDF allows you to have converstions with any PDF document.
+            Simply upload your file and start asking questions right away.
           </p>
+          <Link
+            href="/dashboard"
+            target="_blank"
+            className={buttonVariants({
+              size: "lg",
+              variant: "default",
+              className: "mt-5 rounded-xl",
+            })}
+          >
+            Get started <ArrowRight className="ml-2 h-5 w-5" />
+          </Link>
         </div>
-        <h1 className="max-w-4xl text-5xl md:text-6xl lg:text-7xl font-bold">
-          Talk to your <span className="text-red-600">documents</span> in
-          seconds
-        </h1>
-        <p className="mt-5 max-w-prose text-zinc-700 sm:textlg">
-          TalkingPDF allows you to have converstions with any PDF document.
-          Simply upload your file and start asking questions right away.
-        </p>
-        <Link
-          href="/dashboard"
-          target="_blank"
-          className={buttonVariants({
-            size: "lg",
-            variant: "default",
-            className: "mt-5 rounded-xl",
-          })}
-        >
-          Get started <ArrowRight className="ml-2 h-5 w-5" />
-        </Link>
       </MaxWidthWrapper>
 
-      {/* Value proposition section */}
+      {/* VALUE PROPOSITION SECTION-1*/}
 
       <div className="relative isolate">
         {/* background design */}
@@ -54,8 +56,8 @@ export default function Home() {
         </div>
 
         {/* product image */}
-        <div className="mx-auto mt-16 sm:mt-24 px-6 lg:px-8 max-w-6xl flow-root">
-          <div className="-m-2 lg:-m-4 p-2 lg:p-4 rounded-xl lg:rounded-2xl bg-gray-900/5 ring-1 ring-inset ring-gray-900/10">
+        <MaxWidthWrapper className="max-w-6xl px-4 my-16 sm:my-24">
+          <div className="p-2 lg:p-4 rounded-xl lg:rounded-2xl bg-gray-900/5 ring-1 ring-inset ring-gray-900/10">
             <Image
               src="/images/dashboard-preview.jpg"
               alt="product preview"
@@ -66,7 +68,7 @@ export default function Home() {
               className="p-2 sm:p-8 md:p-20 bg-white shadow-2xl rounded-md ring-1 ring-gray-900/10"
             />
           </div>
-        </div>
+        </MaxWidthWrapper>
 
         {/* background design */}
         <div
@@ -83,26 +85,24 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Feature section */}
+      {/* FEATURE SECTION */}
 
-      <div className="mx-auto mt-32 sm:mt-56 mb-32 max-w-5xl">
-        <div className="mb-12 px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl sm:text-center">
-            <h2 className="mt-2 font-bold text-4xl sm:text-5xl text-gray-900">
-              Start chatting instantly
-            </h2>
-            <p className="mt-4 text-lg text-gray-600">
-              Chatting with your pdf files has neverbeen easier than with
-              TalkingPDF
-            </p>
-          </div>
+      <MaxWidthWrapper className="max-w-6xl px-4 mt-20 sm:mt-36 mb-12">
+        <div className="mx-auto max-w-2xl mb-12 sm:text-center">
+          <h2 className="mt-2 font-bold text-4xl sm:text-5xl text-gray-900">
+            Start chatting instantly
+          </h2>
+          <p className="mt-4 text-lg text-gray-600">
+            Chatting with your pdf files has never been easier than with
+            TalkingPDF
+          </p>
         </div>
 
         {/* steps */}
         <ol className="my-8 pt-8 space-y-4 md:space-x-12 md:space-y-0 md:flex">
           <li className="md:flex-1">
-            <div className="py-2 pl-4 md:pl-0 md:pb-0 md:pt-4 flex flex-col space-y-2 border-l-4 md:border-l-0 md:border-t-2 border-zinc-300">
-              <span className="text-3xl font-black text-red-600">Step 1</span>
+            <div className="py-2 pl-4 md:pl-0 md:pb-0 md:pt-4 flex flex-col space-y-2 border-l-4 md:border-l-0 md:border-t-2 border-zinc-400">
+              <span className="text-3xl font-bold text-red-600">Step 1</span>
               <span className="text-xl font-semibold ">
                 Sign up for an account
               </span>
@@ -119,8 +119,8 @@ export default function Home() {
             </div>
           </li>
           <li className="md:flex-1">
-            <div className="py-2 pl-4 md:pl-0 md:pb-0 md:pt-4 flex flex-col space-y-2 border-l-4 md:border-l-0 md:border-t-2 border-zinc-300">
-              <span className="text-3xl font-black text-red-600">Step 2</span>
+            <div className="py-2 pl-4 md:pl-0 md:pb-0 md:pt-4 flex flex-col space-y-2 border-l-4 md:border-l-0 md:border-t-2 border-zinc-400">
+              <span className="text-3xl font-bold text-red-600">Step 2</span>
               <span className="text-xl font-semibold ">
                 Upload your PDF file
               </span>
@@ -130,8 +130,8 @@ export default function Home() {
             </div>
           </li>
           <li className="md:flex-1">
-            <div className="py-2 pl-4 md:pl-0 md:pb-0 md:pt-4 flex flex-col space-y-2 border-l-4 md:border-l-0 md:border-t-2 border-zinc-300">
-              <span className="text-3xl font-black text-red-600">Step 3</span>
+            <div className="py-2 pl-4 md:pl-0 md:pb-0 md:pt-4 flex flex-col space-y-2 border-l-4 md:border-l-0 md:border-t-2 border-zinc-400">
+              <span className="text-3xl font-bold text-red-600">Step 3</span>
               <span className="text-xl font-semibold ">
                 Start asking questions
               </span>
@@ -142,22 +142,23 @@ export default function Home() {
             </div>
           </li>
         </ol>
+      </MaxWidthWrapper>
 
-        {/* product image */}
-        <div className="mx-auto mt-16 sm:mt-24 px-6 lg:px-8 max-w-6xl flow-root">
-          <div className="-m-2 lg:-m-4 p-2 lg:p-4 rounded-xl lg:rounded-2xl bg-gray-900/5 ring-1 ring-inset ring-gray-900/10">
-            <Image
-              src="/images/file-upload-preview.jpg"
-              alt="uploading preview"
-              width={1419}
-              height={732}
-              quality={100}
-              priority
-              className="p-2 sm:p-8 md:p-20 bg-white shadow-2xl rounded-md ring-1 ring-gray-900/10"
-            />
-          </div>
+      {/* VALUE PROPOSITION SECTION-2 */}
+
+      <MaxWidthWrapper className="max-w-6xl px-4 my-16 sm:my-24">
+        <div className="p-2 lg:p-4 rounded-xl lg:rounded-2xl bg-gray-900/5 ring-1 ring-inset ring-gray-900/10">
+          <Image
+            src="/images/file-upload-preview.jpg"
+            alt="uploading preview"
+            width={1419}
+            height={732}
+            quality={100}
+            priority
+            className="p-2 sm:p-8 md:p-20 bg-white shadow-2xl rounded-md ring-1 ring-gray-900/10"
+          />
         </div>
-      </div>
+      </MaxWidthWrapper>
     </section>
   );
 }

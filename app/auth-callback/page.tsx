@@ -8,10 +8,11 @@ export default function AuthCallBackPage() {
   // get the search params from query string named origin
   const origin = searchParams.get("origin");
 
+  // this is the get fetch request in tRPC
   const { data, isLoading } = trpc.authCallBack.useQuery(undefined, {
-    onSuccess: ({ success }) => {
-      if (success) {
-        // user is synced to database
+    onSuccess: (data) => {
+      if (data.success) {
+        // user is synced to database, navigate then back to dashboard
         router.push(origin ? `/${origin}` : "/dashboard");
       }
     },

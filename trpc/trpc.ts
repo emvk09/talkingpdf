@@ -1,3 +1,5 @@
+// this file initializes the tRPC backend
+
 import { initTRPC } from "@trpc/server";
 
 const t = initTRPC.create();
