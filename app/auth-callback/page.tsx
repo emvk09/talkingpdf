@@ -8,7 +8,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { trpc } from "../_trpc/client";
 import { Loader2 } from "lucide-react";
 
-export default function AuthCallBackPage() {
+export default function Page() {
   const router = useRouter();
   const searchParams = useSearchParams();
   // get the search params from query string named origin
@@ -23,6 +23,7 @@ export default function AuthCallBackPage() {
       }
     },
     onError: (error) => {
+      console.log("hi");
       if (error.data?.code === "UNAUTHORIZED") {
         router.push("/sign-in");
       }

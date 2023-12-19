@@ -4,7 +4,7 @@ import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { ArrowRight } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 
-export default function Home() {
+export default function Page() {
   return (
     <section>
       {/* HERO SECTION */}
