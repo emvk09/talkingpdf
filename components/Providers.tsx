@@ -3,7 +3,7 @@
 import { PropsWithChildren, useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { trpc } from "@/app/_trpc/client";
-import { HTTPBatchLinkOptions, httpBatchLink } from "@trpc/client";
+import { httpBatchLink } from "@trpc/client";
 
 export default function Providers({ children }: PropsWithChildren) {
   const [queryClient] = useState(() => new QueryClient());
@@ -11,9 +11,8 @@ export default function Providers({ children }: PropsWithChildren) {
     trpc.createClient({
       links: [
         httpBatchLink({
-          url: process.env.TRPC_BATCH_LINK,
-        } as HTTPBatchLinkOptions),
-        // HTTPBatchLinkOptions is used only for specifying types since we used env variables
+          url: "http://localhost:3000/api/trpc",
+        }),
       ],
     })
   );
