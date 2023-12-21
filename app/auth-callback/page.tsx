@@ -19,18 +19,18 @@ export default function Page() {
     onSuccess: (data) => {
       if (data.success) {
         // user is synced to database, navigate then back to dashboard
-        router.push(origin ? `/${origin}` : "/dashboard");
+        router.push(origin ? origin : "/dashboard");
       }
     },
     onError: (error) => {
-      console.log("hi");
       if (error.data?.code === "UNAUTHORIZED") {
         router.push("/sign-in");
       }
     },
+
+    retry: false,
     // after 500 ms we again check is the user is in db
-    retry: true,
-    retryDelay: 500,
+    // retryDelay: 500,
   });
 
   return (
