@@ -10,7 +10,9 @@ export default function Navbar() {
       <MaxWidthWrapper>
         <div className="flex h-14 items-center justify-between">
           <Link href="/" className="flex font-semibold">
-            <span>talkingPDF.</span>
+            <span>
+              talking<span className="text-[#dc2626]">PDF.</span>
+            </span>
           </Link>
 
           {/* Add mobile navbar */}

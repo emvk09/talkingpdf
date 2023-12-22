@@ -14,8 +14,8 @@ export default function Page() {
   // get the search params from query string named origin
   const origin = searchParams.get("origin");
 
-  // Fetch Get request
-  trpc.authCallBack.useQuery(undefined, {
+  // Get request
+  trpc.getAuthCallBack.useQuery(undefined, {
     onSuccess: (data) => {
       if (data.success) {
         // user is synced to database, navigate then back to dashboard

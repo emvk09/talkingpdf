@@ -9,7 +9,7 @@ import prismadb from "@/lib/prismadb";
 export const appRouter = router({
   // API routes
 
-  authCallBack: publicProcedure.query(async () => {
+  getAuthCallBack: publicProcedure.query(async () => {
     const { getUser } = getKindeServerSession();
     const user = await getUser();
 
@@ -35,9 +35,20 @@ export const appRouter = router({
         },
       });
     }
-
     return { success: true };
   }),
+
+  // getCheckUserInDb: publicProcedure.query(async () => {
+  //   const dbUser = await prismadb.user.findUnique({
+  //     where: {
+  //       id: email,
+  //     },
+  //   });
+  //   if (!dbUser) {
+  //     return new TRPCError({ code: "NOT_FOUND" });
+  //   }
+  //   return { success: true };
+  // }),
 });
 
 export type AppRouter = typeof appRouter;

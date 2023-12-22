@@ -24,5 +24,19 @@ export default async function DashboardPage() {
     redirect("/auth-callback?origin=dashboard");
   }
 
+  // // If logged in browser, also check the database for the user
+  // trpc.getCheckUserInDb.useQuery(
+  //   { email: user.email },
+  //   {
+  //     onError: (error) => {
+  //       // If the user is logged in browser but not in Database (this will be the case after signup)
+  //       if (error.data?.code === "NOT_FOUND") {
+  //         redirect("/auth-callback?origin=dashboard");
+  //       }
+  //     },
+  //     retry: false,
+  //   }
+  // );
+
   return <Dashboard />;
 }
