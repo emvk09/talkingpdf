@@ -1,4 +1,4 @@
-// this file initializes the tRPC backend
+// this file initializes the tRPC backend server
 
 import { initTRPC } from "@trpc/server";
 

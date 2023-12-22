@@ -8,10 +8,10 @@ datasource db {
 }
  
 model User {
-  id                      String    @id @default(auto()) @map("_id") @db.ObjectId 
+  // id                      String    @id @default(auto()) @map("_id") @db.ObjectId 
+  id                      String    @id @map("_id")  
   name                    String?
   email                   String    @unique
-  kindeId                 String    @unique
   image                   String?
   createdAt               DateTime  @default(now())
 

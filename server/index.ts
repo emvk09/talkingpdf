@@ -1,10 +1,10 @@
-// this file initializes main router instance, commonly referred to as appRouter
-// lastly, we need to export the type of the router which we'll later use on the client side
+// this file creates router instance (appRouter) with all the procedures, i.e:(api calls)
+// later, this tRPC router instance need to be connected with Next.js appRouter (api/trpc/[trpc]/route.ts)
 
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { publicProcedure, router } from "./trpc";
+import { publicProcedure, router } from "@/server/trpc";
 import { TRPCError } from "@trpc/server";
-import { db } from "@/lib/db";
+import prismadb from "@/lib/prismadb";
 
 export const appRouter = router({
   // API routes
@@ -19,25 +19,23 @@ export const appRouter = router({
     }
 
     // check if user is in database
-    // we write db.user instead of db.User becz schemas are lowercase in mongodb
-    const dbUser = await db.user.findFirst({
+    const dbUser = await prismadb.user.findUnique({
       where: {
-        kindeId: user.id,
+        id: user.id,
       },
     });
 
     // if there is no user, then create a new user
     if (!dbUser) {
-      await db.user.create({
+      await prismadb.user.create({
         data: {
+          id: user.id,
           name: user.given_name,
           email: user.email,
-          kindeId: user.id,
         },
       });
     }
 
-    // return true when the user is already in the database
     return { success: true };
   }),
 });

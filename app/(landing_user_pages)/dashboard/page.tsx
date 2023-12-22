@@ -1,7 +1,7 @@
-import Dashboard from "@/components/Dashboard";
-import { db } from "@/lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
+import Dashboard from "@/components/Dashboard";
+import prismadb from "@/lib/prismadb";
 
 export default async function DashboardPage() {
   const { getUser } = getKindeServerSession();
@@ -13,9 +13,9 @@ export default async function DashboardPage() {
   }
 
   // If logged in browser, also check the database for the user
-  const dbUser = await db.user.findFirst({
+  const dbUser = await prismadb.user.findUnique({
     where: {
-      kindeId: user?.id,
+      id: user?.id,
     },
   });
 

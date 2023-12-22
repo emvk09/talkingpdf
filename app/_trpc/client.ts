@@ -1,8 +1,7 @@
-// this file is for creating an instance of tRPC for the client side
-// tRPC assigns type safety to all API routes in the client side
+// this file is for creating an instance of tRPC for the client side, so that we can use it instead of fetch
+// eg: trpc.any_api_procedure_name.useQuery(...,...)
 
 import { createTRPCReact } from "@trpc/react-query";
-import { AppRouter } from "@/trpc";
+import { type AppRouter } from "@/server";
 
 export const trpc = createTRPCReact<AppRouter>({});
-// Now, instead of using fetch, tRPC is used to do api request from client side.

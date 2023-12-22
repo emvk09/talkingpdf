@@ -1,7 +1,7 @@
-// this file sets up an endpoint to handle all API routes as TRPC requests
+// this route file sets up an trpc endpoint to handle all tRPC api requests
 
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
-import { appRouter } from "@/trpc";
+import { appRouter } from "@/server";
 
 const handler = (req: Request) =>
   fetchRequestHandler({
