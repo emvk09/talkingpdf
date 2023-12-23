@@ -2,7 +2,7 @@
 // later, this tRPC router instance need to be connected with Next.js appRouter (api/trpc/[trpc]/route.ts)
 
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { publicProcedure, router } from "@/server/trpc";
+import { privateProcedure, publicProcedure, router } from "@/server/trpc";
 import { TRPCError } from "@trpc/server";
 import prismadb from "@/lib/prismadb";
 
@@ -21,7 +21,7 @@ export const appRouter = router({
     // check if user is in database
     const dbUser = await prismadb.user.findUnique({
       where: {
-        id: user.id,
+        kindeId: user.id,
       },
     });
 
@@ -29,7 +29,7 @@ export const appRouter = router({
     if (!dbUser) {
       await prismadb.user.create({
         data: {
-          id: user.id,
+          kindeId: user.id,
           name: user.given_name,
           email: user.email,
         },
@@ -38,10 +38,10 @@ export const appRouter = router({
     return { success: true };
   }),
 
-  // getCheckUserInDb: publicProcedure.query(async () => {
+  // getCheckUserInDb: publicProcedure.query(async ({email}) => {
   //   const dbUser = await prismadb.user.findUnique({
   //     where: {
-  //       id: email,
+  //       email: email,
   //     },
   //   });
   //   if (!dbUser) {
@@ -49,6 +49,16 @@ export const appRouter = router({
   //   }
   //   return { success: true };
   // }),
+
+  getUserFiles: privateProcedure.query(async ({ ctx }) => {
+    const { kindeId } = ctx;
+
+    return await prismadb.file.findMany({
+      where: {
+        userId: kindeId,
+      },
+    });
+  }),
 });
 
 export type AppRouter = typeof appRouter;

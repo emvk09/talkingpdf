@@ -2,6 +2,7 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 import Dashboard from "@/components/Dashboard";
 import prismadb from "@/lib/prismadb";
+import { trpc } from "@/app/_trpc/client";
 
 export default async function DashboardPage() {
   const { getUser } = getKindeServerSession();
@@ -15,7 +16,7 @@ export default async function DashboardPage() {
   // If logged in browser, also check the database for the user
   const dbUser = await prismadb.user.findUnique({
     where: {
-      id: user?.id,
+      kindeId: user?.id,
     },
   });
 
@@ -26,6 +27,7 @@ export default async function DashboardPage() {
 
   // // If logged in browser, also check the database for the user
   // trpc.getCheckUserInDb.useQuery(
+
   //   { email: user.email },
   //   {
   //     onError: (error) => {

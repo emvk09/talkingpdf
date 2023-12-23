@@ -8,8 +8,8 @@ datasource db {
 }
  
 model User {
-  // id                      String    @id @default(auto()) @map("_id") @db.ObjectId 
-  id                      String    @id @map("_id")  
+  id                      String    @id @default(auto()) @map("_id") @db.ObjectId 
+  kindeId                 String    @unique 
   name                    String?
   email                   String    @unique
   image                   String?
@@ -19,4 +19,26 @@ model User {
   stripeSubscriptionId    String?   @unique 
   stripePriceId           String?  
   stripeCurrentPeriodEnd  DateTime?
+
+  File                    File[]
+}
+
+enum UploadStatus{
+  PENDING
+  PROCESSING
+  FAILED
+  SUCCESS
+}
+
+model File{
+  id                      String    @id @default(auto()) @map("_id") @db.ObjectId
+  name                    String
+  uploadStatus            UploadStatus  @default(PENDING)
+  url                     String
+  key                     String
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+
+  userId                  String?
+  User                    User? @relation(fields: [userId], references: [kindeId])
 }

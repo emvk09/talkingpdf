@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Open_Sans, Roboto } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Providers from "@/components/Providers";
+import "react-loading-skeleton/dist/skeleton.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Roboto({ subsets: ["latin"], weight: "500" });
 
 export const metadata: Metadata = {
   title: "talkingPDF | Home",
-  description: "Talk with your pdf",
+  description: "Talk with your pdf for free",
 };
 
 export default function RootLayout({
@@ -24,7 +25,7 @@ export default function RootLayout({
       <Providers>
         <body
           className={cn(
-            "min-h-screen font-sans antialiased grainy",
+            "min-h-screen font-sans antialiased bg-zinc-50",
             inter.className
           )}
         >

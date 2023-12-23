@@ -17,6 +17,10 @@ module.exports = {
       },
     },
     extend: {
+      screens: {
+        xs: "480px",
+      },
+      backgroundImage: {},
       maxWidth: {
         "8xl": "1408px",
       },
