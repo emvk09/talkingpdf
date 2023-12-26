@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Open_Sans, Roboto } from "next/font/google";
+import { Roboto, Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Providers from "@/components/Providers";
 import "react-loading-skeleton/dist/skeleton.css";
 
-const inter = Roboto({ subsets: ["latin"], weight: "500" });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "talkingPDF | Home",
