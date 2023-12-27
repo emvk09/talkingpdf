@@ -22,14 +22,22 @@ export default async function DashboardPage() {
   }
 
   // If logged in browser, also check the database for the user
-  const dbUser = await prismadb.user.findUnique({
-    where: {
-      kindeId: user?.id,
-    },
-  });
-  if (!dbUser) {
-    redirect("/auth-callback?origin=dashboard");
+  try {
+    const dbUser = await prismadb.user.findUnique({
+      where: {
+        kindeId: user?.id,
+      },
+    });
+    if (!dbUser) {
+      redirect("/auth-callback?origin=dashboard");
+    }
+  } catch (error) {
+    throw new Error("Database error");
   }
 
-  return <Dashboard />;
+  return (
+    <section>
+      <Dashboard />
+    </section>
+  );
 }

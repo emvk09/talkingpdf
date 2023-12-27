@@ -1,7 +1,9 @@
 import { Metadata } from "next";
+import { notFound, redirect } from "next/navigation";
 import prismadb from "@/lib/prismadb";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { notFound, redirect } from "next/navigation";
+import PdfRenderer from "@/components/PdfRenderer";
+import ChatWrapper from "@/components/ChatWrapper";
 
 interface PageProps {
   // params are the dynamic routes
@@ -39,13 +41,17 @@ export default async function Page({ params }: PageProps) {
   }
 
   // If logged in browser, also check the database for the user
-  const dbUser = await prismadb.user.findUnique({
-    where: {
-      kindeId: user?.id,
-    },
-  });
-  if (!dbUser) {
-    redirect(`/auth-callback?origin=dashboard/${fileId}`);
+  try {
+    const dbUser = await prismadb.user.findUnique({
+      where: {
+        kindeId: user?.id,
+      },
+    });
+    if (!dbUser) {
+      redirect(`/auth-callback?origin=dashboard/${fileId}`);
+    }
+  } catch (error) {
+    throw new Error("Database error");
   }
 
   // find the file from database
@@ -58,12 +64,25 @@ export default async function Page({ params }: PageProps) {
     });
     if (!file) notFound();
   } catch (error) {
-    notFound();
+    throw new Error("Database error");
   }
 
+  // 4rem is the height of the Navbar (h-14)
   return (
-    <section>
-      <h1>{fileId}</h1>
+    <section className="flex-1 justify-between flex flex-col h-[calc(100vh-4rem)]">
+      <div className="mx-auto w-full max-w-8xl grow lg:flex xl:px-2">
+        {/* Left side */}
+        <div className="flex-1 xl:flex">
+          <div className="px-4 py-6 sm:px-6 lg:pl-8 xl:flex-1 xl:pl-6">
+            <PdfRenderer />
+          </div>
+        </div>
+
+        {/* Right side */}
+        <div className="shrink-0 flex-[0.75] border-t border-gray-200 lg:w-96 lg:border-l lg:border-t-0">
+          <ChatWrapper />
+        </div>
+      </div>
     </section>
   );
 }
