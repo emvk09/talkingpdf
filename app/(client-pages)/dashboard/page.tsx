@@ -1,7 +1,12 @@
+import { Metadata } from "next";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 import Dashboard from "@/components/Dashboard";
 import prismadb from "@/lib/prismadb";
+
+export const metadata: Metadata = {
+  title: "Dashboard | talkingPDF",
+};
 
 export default async function DashboardPage() {
   const { getUser } = getKindeServerSession();
