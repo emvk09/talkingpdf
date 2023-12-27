@@ -1,6 +1,11 @@
 import Link from "next/link";
+import { Metadata } from "next";
 import { buttonVariants } from "@/components/ui/button";
 import { AlertCircle } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "404 | talkingPDF",
+};
 
 export default function Error404() {
   return (

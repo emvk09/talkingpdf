@@ -1,8 +1,13 @@
+import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { ArrowRight } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
+
+export const metadata: Metadata = {
+  title: "Home",
+};
 
 export default function Page() {
   return (

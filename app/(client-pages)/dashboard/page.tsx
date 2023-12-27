@@ -5,14 +5,18 @@ import Dashboard from "@/components/Dashboard";
 import prismadb from "@/lib/prismadb";
 
 export const metadata: Metadata = {
-  title: "Dashboard | talkingPDF",
+  title: "Dashboard",
+  alternates: {
+    canonical: "/dashboard",
+  },
 };
 
 export default async function DashboardPage() {
+  // get the session of logged in user
   const { getUser } = getKindeServerSession();
-  const user = await getUser();
 
   // Check if the user is already logged in the browser
+  const user = await getUser();
   if (!user || !user.id) {
     redirect("/auth-callback?origin=dashboard");
   }
@@ -23,8 +27,6 @@ export default async function DashboardPage() {
       kindeId: user?.id,
     },
   });
-
-  // If the user is logged in browser but not in Database (this will be the case after signup)
   if (!dbUser) {
     redirect("/auth-callback?origin=dashboard");
   }

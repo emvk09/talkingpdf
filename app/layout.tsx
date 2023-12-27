@@ -8,8 +8,69 @@ import "react-loading-skeleton/dist/skeleton.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Home | talkingPDF",
+  // inorder for the "title.template" to work, the pages in that specific route must also have a "title" in its metadata.
+  // if the pages in that specific route have no "title", then "title.default" of the closest parent Layout will be shown for that particular page
+  title: { default: "talkingPDF", template: "%s | talkingPDF" },
   description: "Talk with your pdf for free",
+  keywords: [
+    "talking",
+    "ai",
+    "talkingPDF",
+    "pdf",
+    "free",
+    "chatbot",
+    "scrapper",
+    "easy",
+  ],
+  generator: "Next.js",
+  applicationName: "talkingPDF",
+  referrer: "origin-when-cross-origin",
+  authors: [{ name: "Edwin Moncy" }],
+  creator: "Edwin Moncy",
+  publisher: "Edwin Moncy",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL(`http://localhost:3000`),
+  alternates: {
+    canonical: "/",
+    languages: {
+      "en-US": "/en-US",
+    },
+  },
+  openGraph: {
+    title: "talkingPDF",
+    description: "Talk with your pdf for free",
+    url: `http://localhost:3000`,
+    siteName: "talkingPDF",
+    // images: [
+    //   {
+    //     url: "/images/logo-background.jpg",
+    //     width: 800,
+    //     height: 600,
+    //   },
+    // ],
+    locale: "en_US",
+    type: "website",
+  },
+  icons: {
+    // icon: "/images/logo-background.jpg",
+  },
+  category: "pdf ai chat bot free",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
