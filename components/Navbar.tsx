@@ -6,9 +6,9 @@ import { ArrowRight } from "lucide-react";
 
 export default function Navbar() {
   return (
-    <nav className="w-full h-14 sticky z-30 inset-x-0 top-0 border-b border-gray-200 bg-white/70 backdrop-blur-xl transition-all">
+    <nav className="w-full h-16 sticky z-30 inset-x-0 top-0 border-b border-gray-200 bg-white/70 backdrop-blur-xl transition-all">
       <MaxWidthWrapper>
-        <div className="flex h-14 items-center justify-between">
+        <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex font-semibold">
             <span className="text-lg font-sans">
               talking<span className="text-[#dc2626] font-bold">PDF.</span>

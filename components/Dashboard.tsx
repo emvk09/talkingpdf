@@ -15,7 +15,7 @@ export default function Dashboard() {
     null
   );
 
-  // useUtils invalidates the previously done useQueries data cache in the component. So that they refetched again
+  // useUtils invalidates the previously done useQueries data cache in the component. So that they can be refetched again
   const utils = trpc.useUtils();
 
   // Get request for files
@@ -40,7 +40,7 @@ export default function Dashboard() {
 
   const displayFiles = () => {
     return (
-      <ul className="mt-8 grid-cols-1 gap-6 divide-y divide-zinc-200 md:grid-cols-2 lg:grid-cols-3">
+      <ul className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {files!
           .sort(
             (a, b) =>
@@ -49,20 +49,19 @@ export default function Dashboard() {
           .map((file) => (
             <li
               key={file.id}
-              className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow transition hover:shadow-lg"
+              className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white shadow transition hover:shadow-lg border border-1 border-gray-100"
             >
               <Link
                 href={`/dashboard/${file.id}`}
                 className="flex flex-col gap-2"
               >
                 <div className="pt-6 px-6 flex w-full items-center justify-between space-x-6">
-                  <div className="h-10 w-10 flex-shrink-0 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500" />
-                  <div className="flex-1 truncate">
-                    <div className="flex items-center space-x-3">
-                      <h3 className="truncate text-lg font-medium text-zinc-900">
-                        {file.name}
-                      </h3>
-                    </div>
+                  <div className="h-10 w-10 flex-shrink-0 rounded-full bg-gradient-to-r from-zinc-200 to-neutral-200" />
+                  <div className="flex-1 text-ellipsis overflow-hidden">
+                    {/* "text-ellipsis overflow-hidden" is same as "truncate" */}
+                    <h3 className="text-lg font-medium text-zinc-900 truncate">
+                      {file.name}
+                    </h3>
                   </div>
                 </div>
               </Link>
@@ -108,7 +107,7 @@ export default function Dashboard() {
   };
 
   const displayLoading = () => (
-    <Skeleton height={50} className="my-2" count={7} enableAnimation />
+    <Skeleton height={60} className="my-2" count={6} enableAnimation />
   );
 
   return (

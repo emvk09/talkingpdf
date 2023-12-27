@@ -8,7 +8,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "talkingPDF | Home",
+  title: "Home | talkingPDF",
   description: "Talk with your pdf for free",
 };
 
