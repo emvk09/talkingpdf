@@ -6,12 +6,20 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import Dropzone from "react-dropzone";
 import { CloudIcon, File } from "lucide-react";
+import { useUploadThing } from "@/lib/uploadthing";
+import { useToast } from "@/components/ui/use-toast";
 
 const DropzoneUploadArea = () => {
   const [isUploading, setIsUploading] = useState<boolean>(true);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
 
-  const startSimulatedProgerss = () => {
+  // this is the custom hook from uploadthing imported from lib
+  const { startUpload } = useUploadThing("pdfUploader");
+
+  // desstructure toast notification function
+  const { toast } = useToast();
+
+  const startSimulatedProgress = () => {
     // clear any previous progress state
     setUploadProgress(0);
 
@@ -32,16 +40,38 @@ const DropzoneUploadArea = () => {
   return (
     <Dropzone
       multiple={false}
-      onDrop={async (acceptedFiles) => {
+      onDrop={async (acceptedFile) => {
         setIsUploading(true);
 
         // this will start the setInterval function
-        const progressInterval = startSimulatedProgerss();
+        const progressInterval = startSimulatedProgress();
 
-        // handle file uploading
-        await new Promise((resolve, reject) => {
-          setTimeout(resolve, 20000);
-        });
+        // handle file uploading using uploadthing hook
+        const res = await startUpload(acceptedFile);
+        if (!res) {
+          return toast({
+            title: "Something went wrong",
+            description: "Please try again later",
+            variant: "destructive",
+          });
+        }
+
+        // res is an array of objects
+        // we are taking the 1st array element (object) and assigning it to an variable fileResponse
+        // if we wanted to destructure the 2nd element, => const [, fileResponse] = res;
+        const [fileResponse] = res;
+        const key = fileResponse?.key;
+        if (!key) {
+          return toast({
+            title: "Something went wrong",
+            description: "Please try again later",
+            variant: "destructive",
+          });
+        }
+
+        // even though we get the key from the fileResponse of upload thing, it still doesnt ensure that the file is uploaded successfully
+        // so we need to do polling approach to the backend
+
         // after file upload is complete, clear the interval
         clearInterval(progressInterval);
         setUploadProgress(100);

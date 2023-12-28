@@ -14,8 +14,8 @@ export default function Navbar() {
     <nav className="w-full h-16 sticky z-30 inset-x-0 top-0 border-b border-gray-200 bg-white/70 backdrop-blur-xl transition-all">
       <MaxWidthWrapper>
         <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="flex font-semibold">
-            <span className={`${pacifico.className} text-xl`}>
+          <Link href="/" className="flex font-semibold text-xl select-none">
+            <span className={pacifico.className}>
               talking
               <span className={`${opensans.className} text-[#dc2626]`}>
                 PDF.

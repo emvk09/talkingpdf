@@ -55,7 +55,6 @@ export const appRouter = router({
           userId: kindeId,
         },
       });
-
       if (!file) {
         throw new TRPCError({ code: "NOT_FOUND" });
       }
@@ -66,6 +65,24 @@ export const appRouter = router({
           userId: kindeId,
         },
       });
+
+      return file;
+    }),
+
+  getUploadFileInfo: privateProcedure
+    .input(z.object({ key: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      const { kindeId } = ctx;
+
+      const file = await prismadb.file.findFirst({
+        where: {
+          key: input.key,
+          userId: kindeId,
+        },
+      });
+      if (!file) {
+        throw new TRPCError({ code: "NOT_FOUND" });
+      }
 
       return file;
     }),

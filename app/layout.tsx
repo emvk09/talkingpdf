@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import Providers from "@/components/Providers";
 import { inter } from "@/lib/fonts";
 import "react-loading-skeleton/dist/skeleton.css";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   // inorder for the "title.template" to work, the pages in that specific route must also have a "title" in its metadata.
@@ -85,6 +86,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
             inter.className
           )}
         >
+          <Toaster />
           {children}
         </body>
       </Providers>
