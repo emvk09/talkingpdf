@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { Roboto, Inter, Poppins } from "next/font/google";
 import "./globals.css";
+import { PropsWithChildren } from "react";
 import { cn } from "@/lib/utils";
 import Providers from "@/components/Providers";
+import { inter } from "@/lib/fonts";
 import "react-loading-skeleton/dist/skeleton.css";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   // inorder for the "title.template" to work, the pages in that specific route must also have a "title" in its metadata.
@@ -73,11 +72,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en" className="light">
       <head>

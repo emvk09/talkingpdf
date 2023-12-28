@@ -1,5 +1,4 @@
 import Link from "next/link";
-// import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs/server";
 import {
   RegisterLink,
   LoginLink,
@@ -8,6 +7,7 @@ import {
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import { buttonVariants } from "./ui/button";
 import { ArrowRight } from "lucide-react";
+import { opensans, pacifico } from "@/lib/fonts";
 
 export default function Navbar() {
   return (
@@ -15,8 +15,11 @@ export default function Navbar() {
       <MaxWidthWrapper>
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex font-semibold">
-            <span className="text-lg font-sans">
-              talking<span className="text-[#dc2626] font-bold">PDF.</span>
+            <span className={`${pacifico.className} text-xl`}>
+              talking
+              <span className={`${opensans.className} text-[#dc2626]`}>
+                PDF.
+              </span>
             </span>
           </Link>
 
