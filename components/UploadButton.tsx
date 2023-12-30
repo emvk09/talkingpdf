@@ -1,23 +1,37 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { trpc } from "@/app/_trpc/client";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import Dropzone from "react-dropzone";
-import { CloudIcon, File } from "lucide-react";
+import { CloudIcon, File, Loader2 } from "lucide-react";
 import { useUploadThing } from "@/lib/uploadthing";
 import { useToast } from "@/components/ui/use-toast";
 
 const DropzoneUploadArea = () => {
-  const [isUploading, setIsUploading] = useState<boolean>(true);
+  const [isUploading, setIsUploading] = useState<boolean>(false);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
+
+  const router = useRouter();
 
   // this is the custom hook from uploadthing imported from lib
   const { startUpload } = useUploadThing("pdfUploader");
 
-  // desstructure toast notification function
+  // destructure toast notification function
   const { toast } = useToast();
+
+  // get request for checking pdf upload info (polling approach)
+  const { mutate: startPolling } = trpc.getUploadFileInfo.useMutation({
+    onSuccess: (file) => {
+      router.push(`/dashboard/${file.id}`);
+    },
+    // we are polling the server until we get success
+    retry: true,
+    retryDelay: 500,
+  });
 
   const startSimulatedProgress = () => {
     // clear any previous progress state
@@ -69,12 +83,13 @@ const DropzoneUploadArea = () => {
           });
         }
 
-        // even though we get the key from the fileResponse of upload thing, it still doesnt ensure that the file is uploaded successfully
-        // so we need to do polling approach to the backend
-
         // after file upload is complete, clear the interval
         clearInterval(progressInterval);
         setUploadProgress(100);
+
+        // even though we get the key from the fileResponse of uploadthing, it still doesnt ensure that the file is uploaded successfully
+        // so we need to do polling approach to the backend
+        startPolling({ key });
       }}
     >
       {({ getRootProps, getInputProps, acceptedFiles }) => (
@@ -112,11 +127,27 @@ const DropzoneUploadArea = () => {
               {isUploading ? (
                 <div className="w-full mt-4 max-w-xs mx-auto">
                   <Progress
+                    indicatorColor={
+                      uploadProgress === 100 ? "bg-green-500" : ""
+                    }
                     value={uploadProgress}
                     className="h-1 w-full bg-zinc-200"
                   />
+                  {uploadProgress === 100 ? (
+                    <div className="pt-2 flex gap-1 items-center justify-center text-sm text-zinc-700 text-center">
+                      <Loader2 className="h3 w-3 animate-spin " />
+                      Redirecting...
+                    </div>
+                  ) : null}
                 </div>
               ) : null}
+
+              <input
+                {...getInputProps()}
+                type="file"
+                id="dropzone-file"
+                className="hidden"
+              />
             </label>
           </div>
         </div>

@@ -73,7 +73,6 @@ export const appRouter = router({
     .input(z.object({ key: z.string() }))
     .mutation(async ({ ctx, input }) => {
       const { kindeId } = ctx;
-
       const file = await prismadb.file.findFirst({
         where: {
           key: input.key,
